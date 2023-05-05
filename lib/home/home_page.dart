@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:test/test.dart';
+
 
 //stl -> stateless widget
 // alt + enter -> wrap
@@ -9,11 +11,12 @@ class HomePage extends StatefulWidget {
 
   @override
   _HomePageState createState() => _HomePageState();
+
 }
 
 class _HomePageState extends State<HomePage> {
 
-  Color bgColor = Colors.amberAccent;
+  Color bgColor = Colors.white;
 
   void changeBgColor() {
     setState(() {
