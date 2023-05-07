@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_app/home/home_page.dart';
+import 'package:projeto_app/home/spotify.dart';
+import 'package:spotify/spotify.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  final credentials = SpotifyApiCredentials(
+    '980bc4a100a64c40b0149076375a35c1',
+    'fe2b290fda5348dfaeb08f414a71b12f',
+  );
+
+  final spotify = SpotifyApi(credentials);
+  final artist = await spotify.artists.get('2pH3wEn4eYlMMIIQyKPbVR'); // DragonForce
+
+  var token = await spotify.getCredentials();
+
+  final artistName = artist.name;
+  final artistGenres = artist.genres;
+
+  runApp(MyApp(artistName!, artistGenres!));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String artistName;
+  final List<String> artistGenres;
+
+  const MyApp(this.artistName, this.artistGenres, {Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -16,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: SpotifyStateful(artistName: artistName, artistGenres: artistGenres),
     );
   }
 }
