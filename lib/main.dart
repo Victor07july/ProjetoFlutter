@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_app/home/spotify.dart';
+import 'package:projeto_app/home/spotify_artist_screen.dart';
 import 'package:spotify/spotify.dart';
 
 void main() async {
@@ -13,6 +13,9 @@ void main() async {
 
   var token = await spotify.getCredentials();
 
+  // artista, como gênero
+  // musical, nome, foto, e número de seguidores0
+  
   final artistName = artist.name;
   final artistGenres = artist.genres;
 
@@ -22,6 +25,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final String artistName;
   final List<String> artistGenres;
+
 
   const MyApp(this.artistName, this.artistGenres, {Key? key}) : super(key: key);
 
